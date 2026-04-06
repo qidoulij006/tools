@@ -28,6 +28,7 @@ Options:
   --help                    Show this help
 
 Examples:
+  bash install-codex-web.sh
   bash install-codex-web.sh --password 'StrongPassword'
   bash install-codex-web.sh --username codex --password 'StrongPassword' --port 7681
 EOF
@@ -77,8 +78,20 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [[ -z "$TTYD_PASSWORD" || "$TTYD_PASSWORD" == "change-this-password" ]]; then
-  echo "Please provide a strong password via --password" >&2
-  exit 1
+  read -r -s -p "Enter web login password: " TTYD_PASSWORD
+  echo
+  read -r -s -p "Confirm web login password: " TTYD_PASSWORD_CONFIRM
+  echo
+
+  if [[ -z "$TTYD_PASSWORD" ]]; then
+    echo "Password cannot be empty." >&2
+    exit 1
+  fi
+
+  if [[ "$TTYD_PASSWORD" != "$TTYD_PASSWORD_CONFIRM" ]]; then
+    echo "Passwords do not match." >&2
+    exit 1
+  fi
 fi
 
 if [[ -z "$CODEX_BIN" ]]; then

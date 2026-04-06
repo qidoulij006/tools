@@ -19,9 +19,17 @@ The session stays alive after browser disconnects, and reconnecting attaches bac
 
 ### Quick install
 
+Interactive password input:
+
 ```bash
 wget https://raw.githubusercontent.com/qidoulij006/tools/main/install-codex-web.sh -O install-codex-web.sh
 chmod +x install-codex-web.sh
+sudo bash install-codex-web.sh
+```
+
+Direct password argument:
+
+```bash
 sudo bash install-codex-web.sh --password '你的强密码'
 ```
 
@@ -44,7 +52,7 @@ http://你的服务器IP:7681
 
 Login credentials:
 - Username: the value passed to `--username` or default `codex`
-- Password: the value passed to `--password`
+- Password: the value passed to `--password`, or the password entered interactively during installation
 
 ### Optional parameters
 
